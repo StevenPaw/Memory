@@ -14,7 +14,8 @@ namespace Memory
         [SerializeField] private GameObject playfield;
         [SerializeField] private GameObject memoryCardPrefab;
         
-        [SerializeField] private TMP_Text counterText;
+        [SerializeField] private TMP_Text pointsText;
+        [SerializeField] private TMP_Text levelText;
 
         private List<MemoryCard> memoryCards = new List<MemoryCard>();
 
@@ -143,7 +144,8 @@ namespace Memory
 
         private void UpdateCounter()
         {
-            counterText.text = collectedPairs + " / " + numberOfCards / 2 + " Pairs";
+            pointsText.text = "Erreichte Punkte: " + collectedPairs * 10;
+            levelText.text = "Level: 1";
             if (collectedPairs >= numberOfCards / 2)
             {
                 //ToDo: Display Memory Finished
