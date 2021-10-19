@@ -13,7 +13,8 @@ namespace Memory
         [SerializeField] private string pathToImages;
         [SerializeField] private GameObject playfield;
         [SerializeField] private GameObject memoryCardPrefab;
-        
+        [SerializeField] private int possiblePoints;
+
         [SerializeField] private TMP_Text pointsText;
         [SerializeField] private TMP_Text levelText;
 
@@ -25,6 +26,8 @@ namespace Memory
         private MemoryCard selectedCard2 = null;
         private bool displayingWrong;
         private int collectedPairs;
+        private float collectedPoints;
+        private int numberOfPairs;
 
         private void Start()
         {
@@ -144,7 +147,10 @@ namespace Memory
 
         private void UpdateCounter()
         {
-            pointsText.text = "Erreichte Punkte: " + collectedPairs * 10;
+            numberOfPairs = numberOfCards / 2;
+            collectedPoints = (possiblePoints / numberOfPairs) * collectedPairs;
+            Debug.Log("collected Points: " + collectedPoints);
+            pointsText.text = "Erreichte Punkte: " + (int)collectedPoints;
             levelText.text = "Level: 1";
             if (collectedPairs >= numberOfCards / 2)
             {
