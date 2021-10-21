@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -16,6 +17,9 @@ namespace Memory
         
         [SerializeField] private TMP_Text pointsText;
         [SerializeField] private TMP_Text levelText;
+        
+        [DllImport("__Internal")]
+        private static extern void SendMessageToBrowser(string str);
 
         private List<MemoryCard> memoryCards = new List<MemoryCard>();
 
@@ -150,6 +154,16 @@ namespace Memory
             {
                 //ToDo: Display Memory Finished
                 //ToDo: Add Points
+
+                foreach (MemoryCard mc in memoryCards)
+                {
+                    mc.UpdateButton();
+                }
+                
+                #if UNITY_WEBGL
+                    SendMessageToBrowser("Memory finished! Here are 60 points!");
+                #endif
+                
                 Debug.Log("Memory finished!");
             }
         }
