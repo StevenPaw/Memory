@@ -1,7 +1,5 @@
 mergeInto(LibraryManager.library, {
-
-  EndGame: function (points) {
-    EndGame(points);
+  GameOver: function (score) {
+    ReactUnityWebGL.GameOver(score);
   },
-
 });

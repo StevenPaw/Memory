@@ -20,7 +20,7 @@ namespace Memory
         [SerializeField] private TMP_Text levelText;
         
         [DllImport("__Internal")]
-        private static extern void EndGame(int points);
+        private static extern void GameOver (int score);
 
         private List<MemoryCard> memoryCards = new List<MemoryCard>();
 
@@ -166,8 +166,8 @@ namespace Memory
                     mc.UpdateButton();
                 }
                 
-                #if UNITY_WEBGL
-                    EndGame((int)collectedPoints);
+                #if (UNITY_WEBGL == true && UNITY_EDITOR == false)
+                    GameOver (100);
                 #endif
                 
                 Debug.Log("Memory finished!");
