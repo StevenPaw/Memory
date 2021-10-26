@@ -20,7 +20,7 @@ namespace Memory
         [SerializeField] private TMP_Text levelText;
         
         [DllImport("__Internal")]
-        private static extern void SendMessageToBrowser(string str);
+        private static extern void EndGame(int points);
 
         private List<MemoryCard> memoryCards = new List<MemoryCard>();
 
@@ -167,7 +167,7 @@ namespace Memory
                 }
                 
                 #if UNITY_WEBGL
-                    SendMessageToBrowser("Memory finished! Here are 60 points!");
+                    EndGame((int)collectedPoints);
                 #endif
                 
                 Debug.Log("Memory finished!");

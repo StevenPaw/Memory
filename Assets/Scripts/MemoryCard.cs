@@ -96,6 +96,7 @@ namespace Memory
                     break;
                 case CardStates.SELECTED:
                     buttonElement.Select();
+                    buttonElement.interactable = false;
                     foregroundImage.color = selectedColor;
                     contentImage.color = Color.white;
                     contentImage.sprite = frontsideSprite;
